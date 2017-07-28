@@ -1,0 +1,25 @@
+{
+  "name": "pubg-slack",
+  "version": "0.1.0",
+  "description": "a slackBot for PUBG stats",
+  "main": "app.js",
+  "scripts": {
+    "start": "node dist\\app.js",
+    "build": "tsc && npm run start"
+  },
+  "devDependencies": {
+    "@slack/client": "^3.10.0",
+    "@types/node": "^8.0.7",
+    "@types/slack-node": "^0.1.1",
+    "pubg-api-redis": "^1.0.4",
+    "tslint": "^5.4.3",
+    "typescript": "^2.4.1"
+  },
+  "keywords": [
+    "PUBG",
+    "slack",
+    "bot"
+  ],
+  "author": "Drew Owen",
+  "license": "ISC"
+}
