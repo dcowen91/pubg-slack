@@ -1,54 +1,40 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const pubgStats_1 = require("./pubgStats");
+const PlayerStatsAdapter_1 = require("./PlayerStatsAdapter");
 class CommandAdapter {
     constructor(api) {
         this.api = api;
     }
     handleCommand(userName, commandText) {
-        const result = 'not supported ' + userName;
-        switch (commandText) {
-            case 'stats':
-                {
-                    return this.api.profile.byNickname(userName).then((playerStats) => {
-                        let str = '';
-                        for (const i in playerStats.Stats) {
-                            const gameType = playerStats.Stats[i];
-                            if (gameType.Region === 'na') {
-                                str += '*' + gameType.Match + '*: ' + gameType.Stats[pubgStats_1.StatName.Rating].displayValue + ' ' + gameType.Stats[pubgStats_1.StatName.Rating].label + ' (' + gameType.Stats[pubgStats_1.StatName.RoundsPlayed].displayValue + gameType.Stats[pubgStats_1.StatName.RoundsPlayed].label + ')\n';
-                            }
-                        }
-                        return str;
-                    });
-                }
-            case 'kd':
-            case 'kdr':
-                {
-                    return this.api.profile.byNickname(userName).then((data) => {
-                        console.log(data.Stats);
-                        console.log(data.Stats[0].Stats);
-                        return data.Stats[0].Match + ': ' + data.Stats[0].Stats[0].label + ' : ' + data.Stats[0].Stats[0].displayValue + '(top ' + data.Stats[0].Stats[0].percentile + ')';
-                    });
-                }
-            case 'rating':
-                {
-                    console.log('rating');
+        console.log('henlo');
+        return this.api.profile.byNickname(userName).then((playerStats) => {
+            console.log('henlo');
+            const adapter = new PlayerStatsAdapter_1.default(playerStats);
+            console.log('henlo');
+            switch (commandText) {
+                case 'stats':
+                    {
+                        return adapter.printStat(pubgStats_1.StatName.Rating, pubgStats_1.StatName.RoundsPlayed);
+                    }
+                case 'kd':
+                case 'kdr':
+                    {
+                        return adapter.printStat(pubgStats_1.StatName.KillDeathRatio);
+                    }
+                case 'wins':
+                    {
+                        return adapter.printStat(pubgStats_1.StatName.Wins, pubgStats_1.StatName.WinRatio);
+                    }
+                case 'top10':
+                    {
+                        return adapter.printStat(pubgStats_1.StatName.Top10s, pubgStats_1.StatName.Top10Ratio);
+                    }
+                default:
                     break;
-                }
-            case 'wins':
-                {
-                    console.log('wins');
-                    break;
-                }
-            case 'top10':
-                {
-                    console.log('top10');
-                    break;
-                }
-            default:
-                break;
-        }
-        return Promise.reject(result);
+            }
+            return Promise.reject('not supported ' + userName);
+        });
     }
 }
 exports.default = CommandAdapter;
