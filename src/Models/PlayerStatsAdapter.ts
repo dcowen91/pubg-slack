@@ -1,4 +1,6 @@
-import {PlayerStats, StatName, PubgStats} from './pubgStats';
+import {PlayerStats} from '../InterFaces/PlayerStats';
+import {StatName} from '../Enums/StatName';
+import {PubgStats} from '../InterFaces/PubgStats';
 
 class PlayerStatsAdapter
 {

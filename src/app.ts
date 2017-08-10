@@ -25,5 +25,7 @@ bot.start();
  * 3. separate interfaces
  * 4. error handling (no stats for a region, no stats, etc)
  * 5. querying by username (summit1g)
+ * 6. add username handling
+ * 7. unify the command structure
  * 6. slackAdapter make better
  */

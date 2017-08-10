@@ -1,34 +1,3 @@
-export interface PlayerStats
-{
-	selectedRegion: string;
-	seasonDisplay: string;
-	LastUpdated: Date;
-	Stats: { [index: number]: GameType};
-	PlayerName: string;
-}
-
-export interface GameType
-{
-	Region: string;
-	Season: string;
-	Match: string;
-	Stats: { [index: number]: PubgStats};
-}
-
-export interface PubgStats
-{
-	label: string;
-	subLabel?: string;
-	field: string;
-	category: string;
-	valueInt?: number;
-	valueDec?: number;
-	value: string;
-	rank?: number;
-	percentile: number;
-	displayValue: string;
-}
-
 export enum StatName
 {
 	KillDeathRatio = 0,
