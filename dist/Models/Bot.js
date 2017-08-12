@@ -7,7 +7,6 @@ class Bot {
         this.slackAdapter = slackAdapter;
     }
     start() {
-        this.slackAdapter.start(this.handleInput);
     }
     handleInput(userId, command) {
         console.log('sup');

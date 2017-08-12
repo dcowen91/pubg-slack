@@ -1,9 +1,20 @@
 import {PubgAPI} from 'pubg-api-redis';
-import {PlayerStats, StatName} from './pubgStats';
+import {PlayerStats} from '../Interfaces/PlayerStats';
+import {StatName} from '../Enums/StatName';
+// import {CommandName} from '../Enums/CommandName';
 import PlayerStatsAdapter from './PlayerStatsAdapter';
 
 class CommandAdapter
 {
+	commandNames = [
+		'stats',
+		'kdr',
+		'wins',
+		'top10',
+		'adduser',
+		'help'
+	];
+
 	api: PubgAPI;
 
 	constructor(api: PubgAPI)
@@ -11,31 +22,35 @@ class CommandAdapter
 		this.api = api;
 	}
 
+	isValidCommand(commandText: string): Boolean
+	{
+		return this.commandNames.indexOf(commandText.toLocaleLowerCase()) >= 0;
+	}
+
 	handleCommand(userName: string, commandText: string): Promise<string>
 	{
-		// TODO ALL THIS
-
-		// if is valid command {}
-		console.log('henlo');
+		// TODO add more cases
+		// TODO add check if it is valid command
+		// TODO refactor to support printing solostats or stats grouped by region
 		return this.api.profile.byNickname(userName).then((playerStats: PlayerStats) => {
-			console.log('henlo');
 			const adapter = new PlayerStatsAdapter(playerStats);
-			console.log('henlo');
-			switch (commandText) {
-				case 'stats':
+			switch (commandText.toLocaleLowerCase()) {
+				case this.commandNames[0]:
 				{
-					return adapter.printStat(StatName.Rating,  StatName.RoundsPlayed);
+					return adapter.printStat(StatName.Rating,  StatName.RoundsPlayed)
+					+ adapter.printStat(StatName.KillDeathRatio)
+					+ adapter.printStat(StatName.Wins, StatName.WinRatio)
+					+ adapter.printStat(StatName.Top10s, StatName.Top10Ratio);
 				}
-				case 'kd':
-				case 'kdr':
+				case this.commandNames[1]:
 				{
 					return adapter.printStat(StatName.KillDeathRatio);
 				}
-				case 'wins':
+				case this.commandNames[2]:
 				{
 					return adapter.printStat(StatName.Wins, StatName.WinRatio);
 				}
-				case 'top10':
+				case this.commandNames[3]:
 				{
 					return adapter.printStat(StatName.Top10s, StatName.Top10Ratio);
 				}

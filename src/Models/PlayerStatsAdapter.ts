@@ -4,6 +4,8 @@ import {PubgStats} from '../InterFaces/PubgStats';
 
 class PlayerStatsAdapter
 {
+	currentSeason = '2017-pre3';
+	currentRegion = 'na';
 	statsCollection: PlayerStats;
 
 	constructor(stats: PlayerStats)
@@ -17,10 +19,9 @@ class PlayerStatsAdapter
 		for (const i in this.statsCollection.Stats)
 		{
 			const gameType = this.statsCollection.Stats[i];
-			if (gameType.Region === 'na')
+			if (gameType.Region === this.currentRegion && gameType.Season === this.currentSeason)
 			{
 				const detail = secondaryStat ? ' (' + this.formatDisplayValue(gameType.Stats[secondaryStat]) + ')' : '';
-				// TODO format string
 				str += '*' + gameType.Match + '*: ' + this.formatDisplayValue(gameType.Stats[stat]) + detail + '\n';
 			}
 		}

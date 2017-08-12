@@ -9,7 +9,6 @@ class UsersMap
 
 	addUser(userId: string, userName: string): void
 	{
-		// console.log('adding ' + userId + ' : ' + userName);
 		this.userCollection[userId] = userName;
 	}
 

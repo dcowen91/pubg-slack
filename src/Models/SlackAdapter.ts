@@ -16,19 +16,17 @@ class SlackAdapter
 		this.usersMap = usersMap;
 		this.commandAdapter = commandAdapter;
 	}
-	start(func: (a: string, b: string) => void)
+	start()
 	{
 		this.client.on(RTM_EVENTS.MESSAGE, (message) =>  {
 			const messageText: string[] = !!message.text ? message.text.split(' ') : [];
-			// console.log(message);
-			console.log(messageText);
-			if (messageText[0] === this.botUserid && messageText.length <= 3)
+			const isMessageToBot = messageText[0] === this.botUserid;
+			if (isMessageToBot && this.commandAdapter.isValidCommand(messageText[1]))
+			// if (messageText[0] === this.botUserid && messageText.length <= 3)
 			{
 				const command = messageText[1];
 				const target = messageText[2] || '<@' + message.user + '>';
 
-				console.log('command: ' + command);
-				console.log('user: ' + target);
 				if (!command || command.toLowerCase() === 'help')
 				{
 					this.client.sendMessage('USAGE:\n@pubgstatsbot help\n@pubgstatsbot adduser [your_pubg_nickName]\n@pubgstatsbot [stats|kdr|rating|wins|top10] [@SlackUser]', message.channel);
@@ -52,26 +50,23 @@ class SlackAdapter
 					}
 					else
 					{
-						console.log('querying for ' + userName);
+						// console.log('querying for ' + userName);
 						this.commandAdapter.handleCommand(userName, command).then((result) => {
 							console.log(result);
 							this.client.sendMessage(result, message.channel);
 						});
 					}
-					// func(target, command);
+
 				}
 			}
-			// TODO remove this
 			else
 			{
-				console.log(func);
+				console.log('dafuq');
 			}
-			// TODO call func and also actually parse this into a playername and a command
 		});
 
 		this.client.start();
 		console.log('now running');
-		// TODO call func
 	}
 
 	promptForUserName(): string

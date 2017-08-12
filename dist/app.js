@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Bot_1 = require("./Models/Bot");
 const UsersMap_1 = require("./Models/UsersMap");
 const CommandAdapter_1 = require("./Models/CommandAdapter");
 const SlackAdapter_1 = require("./Models/SlackAdapter");
@@ -14,6 +13,5 @@ const rtmSlackApi = new client_1.RtmClient(process.env.SLACK_BOT_TOKEN);
 const usersMap = new UsersMap_1.default();
 const commandAdapter = new CommandAdapter_1.default(pubgApi);
 const slackAdapter = new SlackAdapter_1.default(rtmSlackApi, usersMap, commandAdapter);
-const bot = new Bot_1.default(usersMap, commandAdapter, slackAdapter);
-bot.start();
+slackAdapter.start();
 //# sourceMappingURL=app.js.map

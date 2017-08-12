@@ -8,11 +8,11 @@ class SlackAdapter {
         this.usersMap = usersMap;
         this.commandAdapter = commandAdapter;
     }
-    start(func) {
+    start() {
         this.client.on(client_1.RTM_EVENTS.MESSAGE, (message) => {
             const messageText = !!message.text ? message.text.split(' ') : [];
-            console.log(messageText);
-            if (messageText[0] === this.botUserid && messageText.length <= 3) {
+            const isMessageToBot = messageText[0] === this.botUserid;
+            if (isMessageToBot && this.commandAdapter.isValidCommand(messageText[1])) {
                 const command = messageText[1];
                 const target = messageText[2] || '<@' + message.user + '>';
                 console.log('command: ' + command);
@@ -43,7 +43,7 @@ class SlackAdapter {
                 }
             }
             else {
-                console.log(func);
+                console.log('dafuq');
             }
         });
         this.client.start();

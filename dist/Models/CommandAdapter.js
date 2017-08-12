@@ -1,34 +1,43 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const pubgStats_1 = require("./pubgStats");
+const StatName_1 = require("../Enums/StatName");
 const PlayerStatsAdapter_1 = require("./PlayerStatsAdapter");
 class CommandAdapter {
     constructor(api) {
+        this.commandNames = [
+            'stats',
+            'kdr',
+            'wins',
+            'top10',
+            'adduser'
+        ];
         this.api = api;
     }
+    isValidCommand(commandText) {
+        return this.commandNames.indexOf(commandText.toLocaleLowerCase()) >= 0;
+    }
     handleCommand(userName, commandText) {
-        console.log('henlo');
         return this.api.profile.byNickname(userName).then((playerStats) => {
-            console.log('henlo');
             const adapter = new PlayerStatsAdapter_1.default(playerStats);
-            console.log('henlo');
-            switch (commandText) {
-                case 'stats':
+            switch (commandText.toLocaleLowerCase()) {
+                case this.commandNames[0]:
                     {
-                        return adapter.printStat(pubgStats_1.StatName.Rating, pubgStats_1.StatName.RoundsPlayed);
+                        return adapter.printStat(StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed)
+                            + adapter.printStat(StatName_1.StatName.KillDeathRatio)
+                            + adapter.printStat(StatName_1.StatName.Wins, StatName_1.StatName.WinRatio)
+                            + adapter.printStat(StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio);
                     }
-                case 'kd':
-                case 'kdr':
+                case this.commandNames[1]:
                     {
-                        return adapter.printStat(pubgStats_1.StatName.KillDeathRatio);
+                        return adapter.printStat(StatName_1.StatName.KillDeathRatio);
                     }
-                case 'wins':
+                case this.commandNames[2]:
                     {
-                        return adapter.printStat(pubgStats_1.StatName.Wins, pubgStats_1.StatName.WinRatio);
+                        return adapter.printStat(StatName_1.StatName.Wins, StatName_1.StatName.WinRatio);
                     }
-                case 'top10':
+                case this.commandNames[3]:
                     {
-                        return adapter.printStat(pubgStats_1.StatName.Top10s, pubgStats_1.StatName.Top10Ratio);
+                        return adapter.printStat(StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio);
                     }
                 default:
                     break;
