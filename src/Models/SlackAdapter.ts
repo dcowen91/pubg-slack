@@ -4,6 +4,7 @@ import CommandAdapter from './CommandAdapter';
 
 class SlackAdapter
 {
+	// TODO don't hard code this
 	private botUserid: string = '<@U5Z8ER1DG>';
 
 	client: RtmClient;

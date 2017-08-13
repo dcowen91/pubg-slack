@@ -2,6 +2,7 @@ import {PlayerStats} from '../InterFaces/PlayerStats';
 import {StatName} from '../Enums/StatName';
 import {PubgStats} from '../InterFaces/PubgStats';
 
+// TODO this is not really an adapter, rename
 class PlayerStatsAdapter
 {
 	currentSeason = '2017-pre3';

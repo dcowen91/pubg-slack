@@ -15,8 +15,6 @@ class SlackAdapter {
             if (isMessageToBot && this.commandAdapter.isValidCommand(messageText[1])) {
                 const command = messageText[1];
                 const target = messageText[2] || '<@' + message.user + '>';
-                console.log('command: ' + command);
-                console.log('user: ' + target);
                 if (!command || command.toLowerCase() === 'help') {
                     this.client.sendMessage('USAGE:\n@pubgstatsbot help\n@pubgstatsbot adduser [your_pubg_nickName]\n@pubgstatsbot [stats|kdr|rating|wins|top10] [@SlackUser]', message.channel);
                 }
@@ -34,7 +32,6 @@ class SlackAdapter {
                         this.client.sendMessage('pubg user not found for ' + target + '. Please have the user call the addUser command', message.channel);
                     }
                     else {
-                        console.log('querying for ' + userName);
                         this.commandAdapter.handleCommand(userName, command).then((result) => {
                             console.log(result);
                             this.client.sendMessage(result, message.channel);

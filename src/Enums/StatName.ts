@@ -11,6 +11,7 @@ export enum StatName
 	Losses,
 	Rating,
 	BestRating,
+	BestRank,
 	DamagePg,
 	HeadshotKillsPg,
 	HealsPg,
