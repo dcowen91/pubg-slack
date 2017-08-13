@@ -20,7 +20,6 @@ slackAdapter.start();
 /* TODOs:
  * 1. project structure (folders)
  * 2. project structure (combine / split out classes)
- * 3. separate interfaces
  * 4. error handling (no stats for a region, no stats, etc)
  * 5. querying by username (summit1g)
  * 6. add username handling

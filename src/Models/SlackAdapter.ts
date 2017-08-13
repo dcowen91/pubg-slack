@@ -22,6 +22,7 @@ class SlackAdapter
 		this.client.on(RTM_EVENTS.MESSAGE, (message) =>  {
 			const messageText: string[] = !!message.text ? message.text.split(' ') : [];
 			const isMessageToBot = messageText[0] === this.botUserid;
+			// TODO do more / proper validation here
 			if (isMessageToBot && this.commandAdapter.isValidCommand(messageText[1]))
 			// if (messageText[0] === this.botUserid && messageText.length <= 3)
 			{

@@ -40,7 +40,6 @@ class CommandAdapter
 	handleCommand(userName: string, commandText: string): Promise<string>
 	{
 		// TODO add check if it is valid command
-		// TODO refactor to support printing solostats or stats grouped by region
 		return this.api.profile.byNickname(userName).then((playerStats: PlayerStats) => {
 			const adapter = new PlayerStatsAdapter(playerStats);
 			return this.getCommandText(commandText.toLocaleLowerCase(), adapter);
