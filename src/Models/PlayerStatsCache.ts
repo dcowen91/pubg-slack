@@ -4,26 +4,36 @@ import {PlayerStats} from '../InterFaces/PlayerStats';
 class PlayerStatsCache
 {
 	private innerCache: {[userName: string]: PlayerStatsCacheValue};
-	private invalidationTime;
+
+	// 5 minutes in milliseconds
+	private invalidationTime = 300000;
 
 	// Key {username: string}
 	// Value {stats: PlayerStats, timeStamp: dateTime}
 	// TODO: Make singleton?
-	constructor(time: number)
+	constructor()
 	{
 		this.innerCache = {};
-		this.invalidationTime = time;
 	}
 
 	getPlayer(name: string): PlayerStatsCacheValue
 	{
 		const value = this.innerCache[name];
 		const calculatedDateTime = new Date(Date.now() - this.invalidationTime);
-		if (!!value && !!(value.stats as PlayerStats) && (calculatedDateTime.toUTCString()) < value.timeStamp.toUTCString())
+		if (!!value && !!(value.stats as PlayerStats) && (calculatedDateTime) < value.timeStamp)
 		{
 			return this.innerCache[name];
 		}
-		else return {} as PlayerStatsCacheValue;
+		console.log('getPlayer failed.');
+		console.log('value:' + value);
+		console.log('value.timestampe:' + !!value || value.timeStamp);
+		return {} as PlayerStatsCacheValue;
+	}
+
+	addPlayer(userName: string, stats: PlayerStats)
+	{
+		const timeStamp: Date = new Date();
+		this.innerCache[userName] = {stats, timeStamp};
 	}
 }
 

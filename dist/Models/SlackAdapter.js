@@ -10,6 +10,7 @@ class SlackAdapter {
     }
     start() {
         this.client.on(client_1.RTM_EVENTS.MESSAGE, (message) => {
+            console.log('ding');
             const messageText = !!message.text ? message.text.split(' ') : [];
             const isMessageToBot = messageText[0] === this.botUserid;
             if (isMessageToBot && this.commandAdapter.isValidCommand(messageText[1])) {

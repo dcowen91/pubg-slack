@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const StatName_1 = require("../Enums/StatName");
 const PlayerStatsAdapter_1 = require("./PlayerStatsAdapter");
 class CommandAdapter {
-    constructor(api) {
+    constructor(api, playerCache) {
         this.commandNames = [
             'rating',
             'kdr',
@@ -22,16 +22,31 @@ class CommandAdapter {
             'adduser',
             'help'
         ];
+        console.log('const');
         this.api = api;
+        this.playerCache = playerCache;
     }
     isValidCommand(commandText) {
         return this.commandNames.indexOf(commandText.toLocaleLowerCase()) >= 0;
     }
     handleCommand(userName, commandText) {
-        return this.api.profile.byNickname(userName).then((playerStats) => {
+        return this.getPlayerStats(userName).then((playerStats) => {
             const adapter = new PlayerStatsAdapter_1.default(playerStats);
             return this.getCommandText(commandText.toLocaleLowerCase(), adapter);
         });
+    }
+    getPlayerStats(userName) {
+        const cachedValue = this.playerCache.getPlayer(userName).stats;
+        console.log('data is ' + !!cachedValue);
+        if (!!cachedValue) {
+            return Promise.resolve(cachedValue);
+        }
+        else {
+            return this.api.profile.byNickname(userName).then((playerStats) => {
+                this.playerCache.addPlayer(userName, playerStats);
+                return playerStats;
+            });
+        }
     }
     getCommandText(commandText, adapter) {
         switch (commandText) {

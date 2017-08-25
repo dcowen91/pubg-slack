@@ -1,7 +1,7 @@
 import {PubgAPI} from 'pubg-api-redis';
 import {PlayerStats} from '../Interfaces/PlayerStats';
 import {StatName} from '../Enums/StatName';
-// import {CommandName} from '../Enums/CommandName';
+import PlayerStatsCache from './PlayerStatsCache';
 import PlayerStatsAdapter from './PlayerStatsAdapter';
 
 class CommandAdapter
@@ -25,11 +25,13 @@ class CommandAdapter
 		'help'
 	];
 
-	api: PubgAPI;
+	private api: PubgAPI;
+	private playerCache: PlayerStatsCache;
 
-	constructor(api: PubgAPI)
+	constructor(api: PubgAPI, playerCache: PlayerStatsCache)
 	{
 		this.api = api;
+		this.playerCache = playerCache;
 	}
 
 	isValidCommand(commandText: string): Boolean
@@ -39,11 +41,26 @@ class CommandAdapter
 
 	handleCommand(userName: string, commandText: string): Promise<string>
 	{
-		// TODO add check if it is valid command
-		return this.api.profile.byNickname(userName).then((playerStats: PlayerStats) => {
+		return this.getPlayerStats(userName).then((playerStats: PlayerStats) => {
 			const adapter = new PlayerStatsAdapter(playerStats);
 			return this.getCommandText(commandText.toLocaleLowerCase(), adapter);
 		});
+	}
+
+	private getPlayerStats(userName): Promise<PlayerStats>
+	{
+		const cachedValue = this.playerCache.getPlayer(userName).stats;
+		if (!!cachedValue)
+		{
+			return Promise.resolve(cachedValue);
+		}
+		else
+		{
+			return this.api.profile.byNickname(userName).then((playerStats: PlayerStats) => {
+				this.playerCache.addPlayer(userName, playerStats);
+				return playerStats;
+			});
+		}
 	}
 
 	private getCommandText(commandText: string, adapter: PlayerStatsAdapter)

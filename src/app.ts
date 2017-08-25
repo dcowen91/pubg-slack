@@ -1,5 +1,6 @@
 import UsersMap from './Models/UsersMap';
 import CommandAdapter from './Models/CommandAdapter';
+import PlayerStatsCache from './Models/PlayerStatsCache';
 import SlackAdapter from './Models/SlackAdapter';
 import {PubgAPI} from 'pubg-api-redis';
 import {RtmClient} from '@slack/client';
@@ -12,7 +13,8 @@ const pubgApi = new PubgAPI({
 const rtmSlackApi = new RtmClient(process.env.SLACK_BOT_TOKEN);
 
 const usersMap = new UsersMap();
-const commandAdapter = new CommandAdapter(pubgApi);
+const playerCache = new PlayerStatsCache();
+const commandAdapter = new CommandAdapter(pubgApi, playerCache);
 const slackAdapter = new SlackAdapter(rtmSlackApi, usersMap, commandAdapter);
 
 slackAdapter.start();
