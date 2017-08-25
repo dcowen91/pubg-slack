@@ -27,16 +27,11 @@ class SlackAdapter {
                     return;
                 }
                 else {
-                    const userName = this.usersMap.getUser(target);
-                    if (!userName) {
-                        this.client.sendMessage('pubg user not found for ' + target + '. Please have the user call the addUser command', message.channel);
-                    }
-                    else {
-                        this.commandAdapter.handleCommand(userName, command).then((result) => {
-                            console.log(result);
-                            this.client.sendMessage(result, message.channel);
-                        });
-                    }
+                    const userName = this.usersMap.getUser(target) || target;
+                    this.commandAdapter.handleCommand(userName, command).then((result) => {
+                        console.log(result);
+                        this.client.sendMessage(result, message.channel);
+                    });
                 }
             }
             else {

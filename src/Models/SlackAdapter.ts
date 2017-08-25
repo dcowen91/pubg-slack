@@ -45,19 +45,19 @@ class SlackAdapter
 				}
 				else
 				{
-					const userName = this.usersMap.getUser(target);
-					if (!userName)
-					{
-						this.client.sendMessage('pubg user not found for ' + target + '. Please have the user call the addUser command', message.channel);
-					}
-					else
-					{
+					const userName = this.usersMap.getUser(target) || target;
+					// if (!userName)
+					// {
+					// 	// this.client.sendMessage('pubg user not found for ' + target + '. Please have the user call the addUser command', message.channel);
+					// }
+					// else
+					// {
 						// console.log('querying for ' + userName);
 						this.commandAdapter.handleCommand(userName, command).then((result) => {
 							console.log(result);
 							this.client.sendMessage(result, message.channel);
 						});
-					}
+					// }
 
 				}
 			}
