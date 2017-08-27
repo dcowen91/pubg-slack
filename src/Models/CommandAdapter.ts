@@ -124,11 +124,12 @@ class CommandAdapter
 			case this.commandNames[13]:
 			{
 				// TODO figure out how to group these by playmode- pass region to adapter.printStat?
-				return this.getCommandText(this.commandNames[0], adapter)
-				+ this.getCommandText(this.commandNames[4], adapter)
-				+ this.getCommandText(this.commandNames[2], adapter)
-				+ this.getCommandText(this.commandNames[3], adapter)
-				+ this.getCommandText(this.commandNames[1], adapter);
+				return  adapter.printStats([StatName.Rating, StatName.RoundsPlayed, StatName.KillDeathRatio, StatName.DamagePg, StatName.Wins, StatName.WinRatio, StatName.Top10s, StatName.Top10Ratio, StatName. BestRating, StatName.BestRank]);
+				// return this.getCommandText(this.commandNames[0], adapter)
+				// + this.getCommandText(this.commandNames[4], adapter)
+				// + this.getCommandText(this.commandNames[2], adapter)
+				// + this.getCommandText(this.commandNames[3], adapter)
+				// + this.getCommandText(this.commandNames[1], adapter);
 			}
 			default:
 				break;

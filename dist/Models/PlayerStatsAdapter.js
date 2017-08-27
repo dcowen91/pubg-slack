@@ -6,6 +6,20 @@ class PlayerStatsAdapter {
         this.currentRegion = 'na';
         this.statsCollection = stats;
     }
+    printStats(stats) {
+        let str = '';
+        for (const i in this.statsCollection.Stats) {
+            const gameType = this.statsCollection.Stats[i];
+            if (gameType.Region === this.currentRegion && gameType.Season === this.currentSeason) {
+                str += '*' + gameType.Match + '*: ';
+                for (const j in stats) {
+                    console.log(j);
+                    str += this.formatDisplayValue(gameType.Stats[stats[j]]) + '\n';
+                }
+            }
+        }
+        return str;
+    }
     printStat(stat, secondaryStat) {
         let str = '';
         for (const i in this.statsCollection.Stats) {

@@ -14,6 +14,25 @@ class PlayerStatsAdapter
 		this.statsCollection = stats;
 	}
 
+	printStats(stats: [StatName]): string
+	{
+		let str = '';
+		for (const i in this.statsCollection.Stats)
+		{
+			const gameType = this.statsCollection.Stats[i];
+			if (gameType.Region === this.currentRegion && gameType.Season === this.currentSeason)
+			{
+				str += '*' + gameType.Match + '*:\n';
+				for (const j in stats)
+				{
+					str += this.formatDisplayValue(gameType.Stats[stats[j]]) + '\n';
+				}
+			}
+
+		}
+		return str;
+	}
+
 	printStat(stat: StatName, secondaryStat?: StatName): string
 	{
 		let str = '';

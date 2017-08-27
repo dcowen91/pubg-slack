@@ -22,7 +22,6 @@ class CommandAdapter {
             'adduser',
             'help'
         ];
-        console.log('const');
         this.api = api;
         this.playerCache = playerCache;
     }
@@ -37,7 +36,6 @@ class CommandAdapter {
     }
     getPlayerStats(userName) {
         const cachedValue = this.playerCache.getPlayer(userName).stats;
-        console.log('data is ' + !!cachedValue);
         if (!!cachedValue) {
             return Promise.resolve(cachedValue);
         }
@@ -105,11 +103,7 @@ class CommandAdapter {
                 }
             case this.commandNames[13]:
                 {
-                    return this.getCommandText(this.commandNames[0], adapter)
-                        + this.getCommandText(this.commandNames[4], adapter)
-                        + this.getCommandText(this.commandNames[2], adapter)
-                        + this.getCommandText(this.commandNames[3], adapter)
-                        + this.getCommandText(this.commandNames[1], adapter);
+                    return adapter.printStats([StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed, StatName_1.StatName.KillDeathRatio, StatName_1.StatName.DamagePg, StatName_1.StatName.Wins, StatName_1.StatName.WinRatio, StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio, StatName_1.StatName.BestRating, StatName_1.StatName.BestRank]);
                 }
             default:
                 break;
