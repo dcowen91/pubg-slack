@@ -32,6 +32,8 @@ class CommandAdapter {
         return this.getPlayerStats(userName).then((playerStats) => {
             const adapter = new PlayerStatsAdapter_1.default(playerStats);
             return this.getCommandText(commandText.toLocaleLowerCase(), adapter);
+        }, () => {
+            return 'failed to find user ' + userName;
         });
     }
     getPlayerStats(userName) {
@@ -103,7 +105,7 @@ class CommandAdapter {
                 }
             case this.commandNames[13]:
                 {
-                    return adapter.printStats([StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed, StatName_1.StatName.KillDeathRatio, StatName_1.StatName.DamagePg, StatName_1.StatName.Wins, StatName_1.StatName.WinRatio, StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio, StatName_1.StatName.BestRating, StatName_1.StatName.BestRank]);
+                    return adapter.printStats([StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed, StatName_1.StatName.BestRating, StatName_1.StatName.BestRank, StatName_1.StatName.Wins, StatName_1.StatName.WinRatio, StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio, StatName_1.StatName.KillDeathRatio, StatName_1.StatName.DamagePg]);
                 }
             default:
                 break;

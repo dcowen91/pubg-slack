@@ -11,7 +11,6 @@ class SlackAdapter {
     start() {
         console.log('now listening');
         this.client.on(client_1.RTM_EVENTS.MESSAGE, (message) => {
-            console.log('message received:' + message.text);
             const messageText = !!message.text ? message.text.split(' ') : [];
             const isMessageToBot = messageText[0] === this.botUserid;
             if (isMessageToBot && this.commandAdapter.isValidCommand(messageText[1])) {
@@ -32,20 +31,15 @@ class SlackAdapter {
                     const userName = this.usersMap.getUser(target) || target;
                     console.log('querying for ' + userName);
                     this.commandAdapter.handleCommand(userName, command).then((result) => {
-                        console.log(result);
                         this.client.sendMessage(result, message.channel);
                     });
                 }
             }
             else {
-                console.log('dafuq');
+                console.log('dafuq' + message.text);
             }
         });
         this.client.start();
-        console.log('now running');
-    }
-    promptForUserName() {
-        return 'gettingName';
     }
 }
 exports.default = SlackAdapter;

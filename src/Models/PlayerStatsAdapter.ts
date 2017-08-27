@@ -17,6 +17,7 @@ class PlayerStatsAdapter
 	printStats(stats: [StatName]): string
 	{
 		let str = '';
+		const lineLength = 25;
 		for (const i in this.statsCollection.Stats)
 		{
 			const gameType = this.statsCollection.Stats[i];
@@ -25,7 +26,18 @@ class PlayerStatsAdapter
 				str += '*' + gameType.Match + '*:\n';
 				for (const j in stats)
 				{
-					str += this.formatDisplayValue(gameType.Stats[stats[j]]) + '\n';
+					const commandDisplayString = this.formatDisplayValue(gameType.Stats[stats[j]]);
+					const currentLength = commandDisplayString.length;
+					let divider = '\n';
+					if ((j as any) % 2 === 0)
+					{
+						const count = Math.ceil((lineLength - currentLength) / 2);
+						console.log(gameType.Stats[stats[j]].label + ' length: ' + currentLength);
+						console.log('tab count: ' + count);
+						console.log('total length for line:' + (count * 2 + currentLength));
+						divider = '\t'.repeat(count);
+					}
+					str += commandDisplayString + divider;
 				}
 			}
 

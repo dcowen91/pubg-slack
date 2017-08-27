@@ -44,6 +44,8 @@ class CommandAdapter
 		return this.getPlayerStats(userName).then((playerStats: PlayerStats) => {
 			const adapter = new PlayerStatsAdapter(playerStats);
 			return this.getCommandText(commandText.toLocaleLowerCase(), adapter);
+		}, () => {
+			return 'failed to find user ' + userName;
 		});
 	}
 
@@ -123,13 +125,7 @@ class CommandAdapter
 			}
 			case this.commandNames[13]:
 			{
-				// TODO figure out how to group these by playmode- pass region to adapter.printStat?
-				return  adapter.printStats([StatName.Rating, StatName.RoundsPlayed, StatName.KillDeathRatio, StatName.DamagePg, StatName.Wins, StatName.WinRatio, StatName.Top10s, StatName.Top10Ratio, StatName. BestRating, StatName.BestRank]);
-				// return this.getCommandText(this.commandNames[0], adapter)
-				// + this.getCommandText(this.commandNames[4], adapter)
-				// + this.getCommandText(this.commandNames[2], adapter)
-				// + this.getCommandText(this.commandNames[3], adapter)
-				// + this.getCommandText(this.commandNames[1], adapter);
+				return  adapter.printStats([StatName.Rating, StatName.RoundsPlayed, StatName.BestRating, StatName.BestRank, StatName.Wins, StatName.WinRatio, StatName.Top10s, StatName.Top10Ratio, StatName.KillDeathRatio, StatName.DamagePg]);
 			}
 			default:
 				break;

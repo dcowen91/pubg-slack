@@ -11,9 +11,6 @@ class PlayerStatsCache {
         if (!!value && !!value.stats && (calculatedDateTime) < value.timeStamp) {
             return this.innerCache[name];
         }
-        console.log('getPlayer failed.');
-        console.log('value:' + value);
-        console.log('value.timestampe:' + !!value || value.timeStamp);
         return {};
     }
     addPlayer(userName, stats) {

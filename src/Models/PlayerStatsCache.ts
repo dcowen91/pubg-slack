@@ -24,9 +24,6 @@ class PlayerStatsCache
 		{
 			return this.innerCache[name];
 		}
-		console.log('getPlayer failed.');
-		console.log('value:' + value);
-		console.log('value.timestampe:' + !!value || value.timeStamp);
 		return {} as PlayerStatsCacheValue;
 	}
 

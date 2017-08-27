@@ -5,6 +5,9 @@ import SlackAdapter from './Models/SlackAdapter';
 import {PubgAPI} from 'pubg-api-redis';
 import {RtmClient} from '@slack/client';
 import * as process from 'process';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const pubgApi = new PubgAPI({
 	apikey: process.env.PUBG_BOT_TOKEN

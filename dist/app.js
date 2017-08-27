@@ -7,6 +7,8 @@ const SlackAdapter_1 = require("./Models/SlackAdapter");
 const pubg_api_redis_1 = require("pubg-api-redis");
 const client_1 = require("@slack/client");
 const process = require("process");
+const dotenv = require("dotenv");
+dotenv.config();
 const pubgApi = new pubg_api_redis_1.PubgAPI({
     apikey: process.env.PUBG_BOT_TOKEN
 });
