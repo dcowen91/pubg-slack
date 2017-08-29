@@ -59,6 +59,3 @@ typings/
 
 # vscode settings
 .vscode
-
-# env file
-env.cmd
