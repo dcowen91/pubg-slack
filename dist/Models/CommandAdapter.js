@@ -52,51 +52,51 @@ class CommandAdapter {
         switch (commandText) {
             case this.commandNames[0]:
                 {
-                    return adapter.printStat(StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed);
+                    return adapter.printStats([StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed]);
                 }
             case this.commandNames[1]:
                 {
-                    return adapter.printStat(StatName_1.StatName.KillDeathRatio, StatName_1.StatName.DamagePg);
+                    return adapter.printStats([StatName_1.StatName.KillDeathRatio, StatName_1.StatName.DamagePg]);
                 }
             case this.commandNames[2]:
                 {
-                    return adapter.printStat(StatName_1.StatName.Wins, StatName_1.StatName.WinRatio);
+                    return adapter.printStats([StatName_1.StatName.Wins, StatName_1.StatName.WinRatio]);
                 }
             case this.commandNames[3]:
                 {
-                    return adapter.printStat(StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio);
+                    return adapter.printStats([StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio]);
                 }
             case this.commandNames[4]:
                 {
-                    return adapter.printStat(StatName_1.StatName.BestRating, StatName_1.StatName.BestRank);
+                    return adapter.printStats([StatName_1.StatName.BestRating, StatName_1.StatName.BestRank]);
                 }
             case this.commandNames[5]:
                 {
-                    return adapter.printStat(StatName_1.StatName.TeamKills, StatName_1.StatName.Suicides);
+                    return adapter.printStats([StatName_1.StatName.TeamKills, StatName_1.StatName.Suicides]);
                 }
             case this.commandNames[6]:
                 {
-                    return adapter.printStat(StatName_1.StatName.RoadKills, StatName_1.StatName.VehicleDestroys);
+                    return adapter.printStats([StatName_1.StatName.RoadKills, StatName_1.StatName.VehicleDestroys]);
                 }
             case this.commandNames[7]:
                 {
-                    return adapter.printStat(StatName_1.StatName.RoundMostKills, StatName_1.StatName.LongestKill);
+                    return adapter.printStats([StatName_1.StatName.RoundMostKills, StatName_1.StatName.LongestKill]);
                 }
             case this.commandNames[8]:
                 {
-                    return adapter.printStat(StatName_1.StatName.LongestTimeSurvived, StatName_1.StatName.AvgSurvivalTime);
+                    return adapter.printStats([StatName_1.StatName.LongestTimeSurvived, StatName_1.StatName.AvgSurvivalTime]);
                 }
             case this.commandNames[9]:
                 {
-                    return adapter.printStat(StatName_1.StatName.MoveDistancePg, StatName_1.StatName.AvgRideDistance);
+                    return adapter.printStats([StatName_1.StatName.MoveDistancePg, StatName_1.StatName.AvgRideDistance]);
                 }
             case this.commandNames[10]:
                 {
-                    return adapter.printStat(StatName_1.StatName.HeadshotKillRatio, StatName_1.StatName.HeadshotKillsPg);
+                    return adapter.printStats([StatName_1.StatName.HeadshotKillRatio, StatName_1.StatName.HeadshotKillsPg]);
                 }
             case this.commandNames[11]:
                 {
-                    return adapter.printStat(StatName_1.StatName.RevivesPg, StatName_1.StatName.HealsPg);
+                    return adapter.printStats([StatName_1.StatName.RevivesPg, StatName_1.StatName.HealsPg]);
                 }
             case this.commandNames[12]:
                 {
@@ -105,7 +105,7 @@ class CommandAdapter {
                 }
             case this.commandNames[13]:
                 {
-                    return adapter.printStats([StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed, StatName_1.StatName.BestRating, StatName_1.StatName.BestRank, StatName_1.StatName.Wins, StatName_1.StatName.WinRatio, StatName_1.StatName.Top10s, StatName_1.StatName.Top10Ratio, StatName_1.StatName.KillDeathRatio, StatName_1.StatName.DamagePg]);
+                    return adapter.printStats([StatName_1.StatName.Rating, StatName_1.StatName.RoundsPlayed, StatName_1.StatName.Wins, StatName_1.StatName.Top10s, StatName_1.StatName.KillDeathRatio]);
                 }
             default:
                 break;

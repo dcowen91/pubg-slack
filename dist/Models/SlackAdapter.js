@@ -35,9 +35,6 @@ class SlackAdapter {
                     });
                 }
             }
-            else {
-                console.log('dafuq' + message.text);
-            }
         });
         this.client.start();
     }

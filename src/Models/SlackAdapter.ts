@@ -32,6 +32,7 @@ class SlackAdapter
 
 				if (!command || command.toLowerCase() === 'help')
 				{
+					// TODO update this
 					this.client.sendMessage('USAGE:\n@pubgstatsbot help\n@pubgstatsbot adduser [your_pubg_nickName]\n@pubgstatsbot [stats|kdr|rating|wins|top10] [@SlackUser]', message.channel);
 				}
 				else if (command.toLowerCase() === 'adduser')
@@ -53,12 +54,7 @@ class SlackAdapter
 					});
 				}
 			}
-			else
-			{
-				console.log('dafuq' + message.text);
-			}
 		});
-
 		this.client.start();
 	}
 }

@@ -25,9 +25,8 @@ slackAdapter.start();
 /* TODOs:
  * 1. project structure (folders)
  * 2. project structure (combine / split out classes)
- * 4. error handling (no stats for a region, no stats, etc)
- * 5. querying by username (summit1g)
- * 6. add username handling
- * 7. unify the command structure
+ * 3. error handling (no stats for a region, no stats, etc)
+ * 4. fix adduser username handling
+ * 5. unify the command structure
  * 6. slackAdapter make better
  */

@@ -8,9 +8,6 @@ class PlayerStatsCache
 	// 5 minutes in milliseconds
 	private invalidationTime = 300000;
 
-	// Key {username: string}
-	// Value {stats: PlayerStats, timeStamp: dateTime}
-	// TODO: Make singleton?
 	constructor()
 	{
 		this.innerCache = {};
