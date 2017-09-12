@@ -53,5 +53,6 @@ var StatName;
     StatName[StatName["Boosts"] = 48] = "Boosts";
     StatName[StatName["DamageDealt"] = 49] = "DamageDealt";
     StatName[StatName["DBNOs"] = 50] = "DBNOs";
-})(StatName = exports.StatName || (exports.StatName = {}));
+})(StatName || (StatName = {}));
+exports.default = StatName;
 //# sourceMappingURL=StatName.js.map

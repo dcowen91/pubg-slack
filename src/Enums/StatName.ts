@@ -1,4 +1,4 @@
-export enum StatName
+enum StatName
 {
 	KillDeathRatio = 0,
 	WinRatio,
@@ -52,3 +52,5 @@ export enum StatName
 	DamageDealt,
 	DBNOs
 }
+
+export default StatName;

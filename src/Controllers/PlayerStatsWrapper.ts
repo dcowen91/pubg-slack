@@ -1,12 +1,10 @@
-import {PlayerStats} from '../InterFaces/PlayerStats';
-import {StatName} from '../Enums/StatName';
-import {PubgStats} from '../InterFaces/PubgStats';
+import PlayerStats from '../InterFaces/PlayerStats';
+import StatName from '../Enums/StatName';
+import PubgStats from '../InterFaces/PubgStats';
+import {REGION, SEASON} from 'pubg-api-redis';
 
-// TODO this is not really an adapter, rename
-class PlayerStatsAdapter
+class PlayerStatsWrapper
 {
-	currentSeason = '2017-pre3';
-	currentRegion = 'na';
 	statsCollection: PlayerStats;
 
 	constructor(stats: PlayerStats)
@@ -17,10 +15,10 @@ class PlayerStatsAdapter
 	printStats(stats: [StatName]): string
 	{
 		let str = '';
-		for (const i in this.statsCollection.Stats)
+		for (const i in this.statsCollection.stats)
 		{
-			const gameType = this.statsCollection.Stats[i];
-			if (gameType.Region === this.currentRegion && gameType.Season === this.currentSeason)
+			const gameType = this.statsCollection.stats[i];
+			if (gameType.Region === REGION.NA && gameType.Season === SEASON.EA2017pre3)
 			{
 				str += '*' + gameType.Match + '*:\n';
 				for (const j in stats)
@@ -42,4 +40,4 @@ class PlayerStatsAdapter
 
 }
 
-export default PlayerStatsAdapter;
+export default PlayerStatsWrapper;

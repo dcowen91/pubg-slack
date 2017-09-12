@@ -1,10 +1,10 @@
-import {GameType} from './GameType';
+import GameType from './GameType';
 
-export interface PlayerStats
+export default interface PlayerStats
 {
 	selectedRegion: string;
 	seasonDisplay: string;
 	LastUpdated: Date;
-	Stats: { [index: number]: GameType};
+	stats: { [index: number]: GameType};
 	PlayerName: string;
 }

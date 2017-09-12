@@ -1,6 +1,6 @@
-import {PlayerStats} from './PlayerStats';
+import PlayerStats from './PlayerStats';
 
-export interface PlayerStatsCacheValue
+export default interface PlayerStatsCacheValue
 {
 	stats: PlayerStats;
 	timeStamp: Date;

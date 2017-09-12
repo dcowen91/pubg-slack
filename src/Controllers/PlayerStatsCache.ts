@@ -1,5 +1,5 @@
-import {PlayerStatsCacheValue} from '../InterFaces/PlayerStatsCacheValue';
-import {PlayerStats} from '../InterFaces/PlayerStats';
+import PlayerStatsCacheValue from '../InterFaces/PlayerStatsCacheValue';
+import PlayerStats from '../InterFaces/PlayerStats';
 
 class PlayerStatsCache
 {

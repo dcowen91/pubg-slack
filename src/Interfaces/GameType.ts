@@ -1,6 +1,6 @@
-import {PubgStats} from './PubgStats';
+import PubgStats from './PubgStats';
 
-export interface GameType
+export default interface GameType
 {
 	Region: string;
 	Season: string;

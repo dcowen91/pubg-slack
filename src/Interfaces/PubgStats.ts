@@ -1,4 +1,4 @@
-export interface PubgStats
+export default interface PubgStats
 {
 	label: string;
 	subLabel?: string;

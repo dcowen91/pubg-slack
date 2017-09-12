@@ -1,20 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class PlayerStatsAdapter {
+const pubg_api_redis_1 = require("pubg-api-redis");
+class PlayerStatsWrapper {
     constructor(stats) {
-        this.currentSeason = '2017-pre3';
-        this.currentRegion = 'na';
         this.statsCollection = stats;
     }
     printStats(stats) {
-        console.log('printing stats');
-        console.log(this.statsCollection);
-        console.log(this.statsCollection.stats);
-        console.log(this);
         let str = '';
         for (const i in this.statsCollection.stats) {
             const gameType = this.statsCollection.stats[i];
-            if (gameType.Region === this.currentRegion && gameType.Season === this.currentSeason) {
+            if (gameType.Region === pubg_api_redis_1.REGION.NA && gameType.Season === pubg_api_redis_1.SEASON.EA2017pre3) {
                 str += '*' + gameType.Match + '*:\n';
                 for (const j in stats) {
                     const commandDisplayString = this.formatDisplayValue(gameType.Stats[stats[j]]);
@@ -29,5 +24,5 @@ class PlayerStatsAdapter {
         return statObject.displayValue + ' ' + statObject.label;
     }
 }
-exports.default = PlayerStatsAdapter;
-//# sourceMappingURL=PlayerStatsAdapter.js.map
+exports.default = PlayerStatsWrapper;
+//# sourceMappingURL=PlayerStatsWrapper.js.map
