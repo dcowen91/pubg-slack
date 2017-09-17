@@ -1,15 +1,13 @@
-import { RtmClient, RTM_EVENTS } from '@slack/client';
+import { RtmClient, RTM_EVENTS, CLIENT_EVENTS  } from '@slack/client';
 import UsersMap from './UsersMap';
 import CommandHandler from './CommandHandler';
 
 class SlackAdapter
 {
-	// TODO don't hard code this
-	private botUserid: string = '<@U5Z8ER1DG>';
-
-	client: RtmClient;
-	usersMap: UsersMap;
-	commandHandler: CommandHandler;
+	private botUserid: string;
+	private client: RtmClient;
+	private usersMap: UsersMap;
+	private commandHandler: CommandHandler;
 
 	constructor(client: RtmClient, usersMap: UsersMap, commandHandler: CommandHandler)
 	{
@@ -20,6 +18,13 @@ class SlackAdapter
 	start()
 	{
 		console.log('now listening');
+
+		this.client.on(CLIENT_EVENTS.RTM.AUTHENTICATED, (rtmStartData) => {
+			this.botUserid = `<@${rtmStartData.self.id}>`;
+			console.log('bot id set as: ' + this.botUserid);
+		});
+
+
 		this.client.on(RTM_EVENTS.MESSAGE, (message) =>  {
 			const messageText: string[] = !!message.text ? message.text.split(' ') : [];
 			const isMessageToBot = messageText[0] === this.botUserid;

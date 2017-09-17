@@ -9,9 +9,13 @@ class SlackAdapter {
     }
     start() {
         console.log('now listening');
+        this.client.on(client_1.CLIENT_EVENTS.RTM.AUTHENTICATED, (rtmStartData) => {
+            this.botUserid = `<@${rtmStartData.self.id}>`;
+            console.log('bot id set as: ' + this.botUserid);
+        });
         this.client.on(client_1.RTM_EVENTS.MESSAGE, (message) => {
             const messageText = !!message.text ? message.text.split(' ') : [];
-            const isMessageToBot = messageText[0] === this.client.botUserid;
+            const isMessageToBot = messageText[0] === this.botUserid;
             if (isMessageToBot && this.commandHandler.isValidCommand(messageText[1])) {
                 const command = messageText[1];
                 const target = messageText[2];

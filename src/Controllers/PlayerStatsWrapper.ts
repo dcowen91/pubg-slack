@@ -18,7 +18,7 @@ class PlayerStatsWrapper
 		for (const i in this.statsCollection.stats)
 		{
 			const gameType = this.statsCollection.stats[i];
-			if (gameType.Region === REGION.NA && gameType.Season === SEASON.EA2017pre3)
+			if (gameType.Region === REGION.NA && gameType.Season === SEASON.EA2017pre4)
 			{
 				str += '*' + gameType.Match + '*:\n';
 				for (const j in stats)
@@ -28,7 +28,10 @@ class PlayerStatsWrapper
 					str += commandDisplayString + divider;
 				}
 			}
-
+		}
+		if (str === '')
+		{
+			str += `no stats found for ${SEASON.EA2017pre4} season`;
 		}
 		return str;
 	}

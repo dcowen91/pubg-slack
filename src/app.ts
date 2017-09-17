@@ -13,11 +13,11 @@ const pubgApi = new PubgAPI({
 	apikey: process.env.PUBG_BOT_TOKEN
 });
 
-const rtmSlackApi = new RtmClient(process.env.SLACK_BOT_TOKEN);
+const slacRtmApi = new RtmClient(process.env.SLACK_BOT_TOKEN);
 
 const usersMap = new UsersMap();
 const playerCache = new PlayerStatsCache();
 const commandHandler = new CommandHandler(pubgApi, playerCache);
-const slackAdapter = new SlackAdapter(rtmSlackApi, usersMap, commandHandler);
+const slackAdapter = new SlackAdapter(slacRtmApi, usersMap, commandHandler);
 
 slackAdapter.start();

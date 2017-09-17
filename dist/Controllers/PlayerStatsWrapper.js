@@ -9,7 +9,7 @@ class PlayerStatsWrapper {
         let str = '';
         for (const i in this.statsCollection.stats) {
             const gameType = this.statsCollection.stats[i];
-            if (gameType.Region === pubg_api_redis_1.REGION.NA && gameType.Season === pubg_api_redis_1.SEASON.EA2017pre3) {
+            if (gameType.Region === pubg_api_redis_1.REGION.NA && gameType.Season === pubg_api_redis_1.SEASON.EA2017pre4) {
                 str += '*' + gameType.Match + '*:\n';
                 for (const j in stats) {
                     const commandDisplayString = this.formatDisplayValue(gameType.Stats[stats[j]]);
@@ -17,6 +17,9 @@ class PlayerStatsWrapper {
                     str += commandDisplayString + divider;
                 }
             }
+        }
+        if (str === '') {
+            str += `no stats found for ${pubg_api_redis_1.SEASON.EA2017pre4} season`;
         }
         return str;
     }
