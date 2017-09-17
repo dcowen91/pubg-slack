@@ -5,8 +5,8 @@ class PlayerStatsCache
 {
 	private innerCache: {[userName: string]: PlayerStatsCacheValue};
 
-	// 5 minutes in milliseconds
-	private invalidationTime = 300000;
+	// 5 minutes
+	private invalidationTime = 1000 * 60 * 5;
 
 	constructor()
 	{

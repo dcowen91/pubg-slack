@@ -1,6 +1,6 @@
+// maps a slack userId to a pubg userName
 class UsersMap
 {
-	// maps a slack userId to a pubg userName
 	userCollection: {[userId: string]: string};
 
 	constructor()
