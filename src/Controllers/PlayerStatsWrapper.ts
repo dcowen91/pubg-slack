@@ -41,7 +41,7 @@ class PlayerStatsWrapper
 				{
 					if (!foundStats)
 					{
-						str += 'no stats found for' +  SEASON.EA2017pre4 + ' season. Stats from ' + SEASON.EA2017pre3 + ' Season:\n';
+						str += 'no stats found for ' +  SEASON.EA2017pre4 + ' season. Stats from ' + SEASON.EA2017pre3 + ' Season:\n';
 						foundStats = true;
 					}
 					str += '*' + gameType.Match + '*:\n';
