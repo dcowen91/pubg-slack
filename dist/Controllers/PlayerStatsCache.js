@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class PlayerStatsCache {
     constructor() {
-        this.invalidationTime = 300000;
+        this.invalidationTime = 1000 * 60 * 5;
         this.innerCache = {};
     }
     getPlayer(name) {
