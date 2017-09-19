@@ -25,7 +25,7 @@ class PlayerStatsWrapper {
                 const gameType = this.statsCollection.stats[i];
                 if (gameType.Region === pubg_api_redis_1.REGION.NA && gameType.Season === validSeasons[1]) {
                     if (!foundStats) {
-                        str += 'no stats found for' + pubg_api_redis_1.SEASON.EA2017pre4 + ' season. Stats from ' + pubg_api_redis_1.SEASON.EA2017pre3 + ' Season:\n';
+                        str += 'no stats found for ' + pubg_api_redis_1.SEASON.EA2017pre4 + ' season. Stats from ' + pubg_api_redis_1.SEASON.EA2017pre3 + ' Season:\n';
                         foundStats = true;
                     }
                     str += '*' + gameType.Match + '*:\n';
