@@ -1,1 +1,0 @@
-{"version":3,"file":"GameType.js","sourceRoot":"","sources":["../../src/Interfaces/GameType.ts"],"names":[],"mappings":"","sourcesContent":["import PubgStats from './PubgStats';\r\n\r\nexport default interface GameType\r\n{\r\n\tRegion: string;\r\n\tSeason: string;\r\n\tMatch: string;\r\n\tStats: { [index: number]: PubgStats};\r\n}"]}
